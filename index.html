@@ -261,7 +261,7 @@ footer{border-top:1px solid var(--border);padding:2rem 5vw;display:flex;align-it
           <span class="contact-link-icon">📱</span>
           <div><span class="contact-link-label">Phone / WhatsApp</span><span class="contact-link-value">+91 7371891156</span></div>
         </a>
-        <a href="mailto:Diwakar152007@gmail.com" class="contact-link">
+        <a href="mailto:diwakar152007@gmail.com" class="contact-link">
           <span class="contact-link-icon">✉️</span>
           <div><span class="contact-link-label">Email</span><span class="contact-link-value">Diwakar152007@gmail.com</span></div>
         </a>
@@ -357,7 +357,7 @@ function sendEmail(){
   const m=document.getElementById('fmessage').value.trim();
   const subject=encodeURIComponent('Portfolio Inquiry from '+n);
   const body=encodeURIComponent('Name: '+n+'\nEmail: '+e+'\nPhone: '+(p||'Not provided')+'\n\nMessage:\n'+m);
-  window.location.href='mailto:Diwakar152007@gmail.com?subject='+subject+'&body='+body;
+  window.location.href='mailto:diwakar152007@gmail.com?subject='+subject+'&body='+body;
   // Show success after short delay
   setTimeout(()=>{
     document.getElementById('successBox').classList.add('show');
