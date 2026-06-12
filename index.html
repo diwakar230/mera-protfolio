@@ -312,7 +312,9 @@ footer{border-top:1px solid var(--border);padding:2rem 5vw;display:flex;align-it
   <span class="footer-made">Built with <span>AI & Passion</span></span>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
+emailjs.init('2qfLPB4pf_iB6RbXc');
 // Cursor glow - desktop only
 if(window.matchMedia('(hover:hover)').matches){
   const glow=document.getElementById('cursorGlow');
@@ -348,21 +350,36 @@ function validate(needEmail){
   return true;
 }
 
-// EMAIL via mailto (opens Gmail directly)
+// EMAIL via EmailJS
 function sendEmail(){
   if(!validate(true))return;
   const n=document.getElementById('fname').value.trim();
   const e=document.getElementById('femail').value.trim();
   const p=document.getElementById('fphone').value.trim();
   const m=document.getElementById('fmessage').value.trim();
-  const subject=encodeURIComponent('Portfolio Inquiry from '+n);
-  const body=encodeURIComponent('Name: '+n+'\nEmail: '+e+'\nPhone: '+(p||'Not provided')+'\n\nMessage:\n'+m);
-  window.location.href='mailto:diwakar152007@gmail.com?subject='+subject+'&body='+body;
-  // Show success after short delay
-  setTimeout(()=>{
+  const btn=document.getElementById('emailBtn');
+  btn.disabled=true;
+  btn.textContent='Sending...';
+  emailjs.send('service_oe57at8','template_r3ya7uc',{
+    from_name:n,
+    from_email:e,
+    phone:p||'Not provided',
+    message:m
+  }).then(()=>{
     document.getElementById('successBox').classList.add('show');
     document.getElementById('successBox').scrollIntoView({behavior:'smooth'});
-  },800);
+    document.getElementById('fname').value='';
+    document.getElementById('femail').value='';
+    document.getElementById('fphone').value='';
+    document.getElementById('fmessage').value='';
+    btn.disabled=false;
+    btn.textContent='✉️ Send Email';
+  }).catch(err=>{
+    alert('Email send karne mein error aaya. Please WhatsApp try karo.');
+    console.error(err);
+    btn.disabled=false;
+    btn.textContent='✉️ Send Email';
+  });
 }
 
 // WHATSAPP
