@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://diwakar230.github.io/mera-protfolio/sitemap.xml
